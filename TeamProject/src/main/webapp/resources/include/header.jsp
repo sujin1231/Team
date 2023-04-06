@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-idth, initial-scale=1">
    
 
-    <title>영화 커뮤니티</title>
+    <title>Welcome to MyWorld</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="${pageContext.request.contextPath }/resources/css/bootstrap.css" rel="stylesheet">
@@ -40,8 +40,8 @@
 
 <body>
 	<!-- header -->
-	<div class="brand">(가제)영화 커뮤니티</div>        
-    <div class="address-bar">영화 좋아하신다구요? 얼른 가입하세요 ^o^</div>
+	<div class="brand">영화 커뮤니티</div>        
+    <div class="address-bar">영화 좋아하신다구요? 얼른 가입하세요 ^0^</div>
 		
     
     <nav class="navbar navbar-default" role="navigation">
@@ -57,29 +57,7 @@
                 <a class="navbar-brand" href="/">영화 커뮤니티</a>
             </div>
            
-                    
-                    <!-- 세션이 없다면 로그인과 조인 메뉴를 나타냄. 
-                   	<c:choose>
-	                    	<c:when test="${sessionScope.user_id == null }">
-	                    <li>
-	                        <a href="/user/user_login">LOGIN</a>
-	                    </li>
-	                    <li>
-	                        <a href="/user/user_join" style="color:red">JOIN</a>
-	                    </li>
-	                   		</c:when>
-	                   		<c:otherwise>
-	                    <li>
-	                        <a href="/user/user_logout">LOGOUT</a>
-	                    </li>
-	                    <li>
-	                        <a href="/user/user_mypage" style="color:red">MyPage</a>
-	                    </li>
-	                    	</c:otherwise>
-					</c:choose>
-					-->
-             
-            
+           
             
             <!-- /.navbar-collapse -->
         </div>

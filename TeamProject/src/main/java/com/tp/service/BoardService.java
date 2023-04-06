@@ -23,28 +23,34 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class BoardService {
-
-	private final BoardRepository boardRepository;
+	public class BoardService {
 	
-	@Transactional
-	public void save(Board board, MultipartFile file) throws Exception{
+		private final BoardRepository boardRepository;
 		
-		String projectPath = System.getProperty("user.dir") +"\\src\\main\\webapp\\resources\\files";
-
-		UUID uuid = UUID.randomUUID();
-		
-		String fileName = uuid +"_"+ file.getOriginalFilename();
-		
-		File savefile = new File(projectPath, fileName);
-		
-		file.transferTo(savefile);
-		
-		board.setFilename(fileName);
-		board.setFilepath("/resources/files/" +fileName);
-		
-		boardRepository.save(board);
-	}
+		@Transactional
+		public void save(Board board, MultipartFile file) throws Exception{
+			
+			if(!file.isEmpty()) {
+				String projectPath = System.getProperty("user.dir") +"\\src\\main\\webapp\\resources\\files";
+				
+				UUID uuid = UUID.randomUUID();
+				
+				String fileName = uuid +"_"+ file.getOriginalFilename();
+				
+				File savefile = new File(projectPath, fileName);
+				
+				file.transferTo(savefile);
+				
+				board.setFilename(fileName);
+				board.setFilepath("/resources/files/" +fileName);
+				
+			}else {
+				board.setFilename("");
+		        board.setFilepath("");
+			}
+			
+			boardRepository.save(board);
+		}
 	
 	@Transactional
 	public List<Board> Content() {
@@ -82,6 +88,8 @@ public class BoardService {
 				.regdate(board1.getRegdate())
 				.title(board1.getTitle())
 				.writer(board1.getWriter())
+				.filename(board1.getFilename())
+				.filepath(board1.getFilepath())
 				.build();
 //			return boardRepository.findById(num).orElseThrow(() -> new IllegalArgumentException("출력 X"));
 		return dto;

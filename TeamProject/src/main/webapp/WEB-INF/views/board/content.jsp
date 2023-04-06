@@ -72,7 +72,8 @@
 				<span class="writer_info">${one.regdate }</span>
 				<hr>
 				
-				<img src="${board.filePath}" alt="사진">
+				<img src="/resources/files/${one.filename }">
+				
 				<span${one.content }></span>
 				
 				<p class="se-text-paragraph se-text-paragraph-align- " 

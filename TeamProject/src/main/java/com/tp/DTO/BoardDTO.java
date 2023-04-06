@@ -26,6 +26,8 @@ public class BoardDTO {
 	private String content;
 	private Timestamp regdate;
 	private int hit;
+	private String filename;
+	private String filepath;
 	
 	public static Board toEntity(final BoardDTO dto) {
 		return Board.builder()
@@ -36,6 +38,8 @@ public class BoardDTO {
 				.content(dto.getContent())
 				.regdate(dto.getRegdate())
 				.hit(0)
+				.filename(dto.getFilename())
+				.filepath(dto.getFilepath())
 				.build();
 	}
 }

@@ -40,21 +40,56 @@ public class BoardController {
 		return "board/register";
 	}
 	
+	//장르
+	@GetMapping("/genre")
+	public String getGenre() {
+		
+		return "board/register";
+	}
+	
+	@PostMapping("/genre")
+	public String postGenre(Model model, @RequestParam String genre) {
+			
+		model.addAttribute("genre", genre);
+		
+		return "board/content";
+	}
+	
+	//카테고리
+	@GetMapping("/category")
+	public String getCategory() {
+		
+		return "board/register";
+	}
+	
+	@PostMapping("/category")
+	public String postCategory(Model model, @RequestParam String category) {
+			
+		model.addAttribute("category", category);
+		
+		return "board/content";
+	}
+	
+	
 	@GetMapping("/save")
-	public String saveForm(
-			@RequestParam("title") String title,
-            @RequestParam("writer") String writer,
-			@RequestParam("genre") String genre,
-            @RequestParam("category") String category,
-            @RequestParam("content") String content,
-            Model model
-			) {
-		//데이터 처리 후 view로 전달
-		model.addAttribute("title", title);
-        model.addAttribute("writer", writer);
-        model.addAttribute("genre", genre);
-        model.addAttribute("category", category);
-        model.addAttribute("content", content);  
+	public String saveForm() {
+//			@RequestParam("title") String title,
+//            @RequestParam("writer") String writer,
+//			@RequestParam("genre") String genre,
+//            @RequestParam("category") String category,
+//            @RequestParam("content") String content,
+//            @RequestParam("filename") String filename,
+//            @RequestParam("filepath") String filepath,
+//            Model model
+//			) {
+//		//데이터 처리 후 view로 전달
+//		model.addAttribute("title", title);
+//        model.addAttribute("writer", writer);
+//        model.addAttribute("genre", genre);
+//        model.addAttribute("category", category);
+//        model.addAttribute("content", content);
+//        model.addAttribute("filename", filename);
+//        model.addAttribute("filepath", filepath);
 		return "board/list";
 	}
 	

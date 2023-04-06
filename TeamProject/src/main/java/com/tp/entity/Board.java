@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -43,7 +44,7 @@ public class Board {
 	@Column(length=50, nullable = false)
 	private String title;
 	
-	@Column(length=2000)
+	@Column
 	private String content;
 	
 	@Column
@@ -53,10 +54,10 @@ public class Board {
 	@Column
 	private Timestamp regdate;
 	
-	@Column
+	@Column(length=150)
 	private String filename;
 	
-	@Column
+	@Column(length=300)
 	private String filepath;
 	
 //	public static Board toSaveEntity(final BoardDTO boardDTO) {
@@ -71,4 +72,6 @@ public class Board {
 //		return boardEntity;
 //		
 //	}
+	
+
 }
