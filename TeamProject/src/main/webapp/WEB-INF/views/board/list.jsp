@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <%@ include file="/resources/include/header.jsp" %>
@@ -258,12 +260,12 @@
 	                <nav class="side-table">
 					    <ul>
 					      <li><a href="register">글 작성</a></li>
-					      <li><a href="">전체 글 보기</a></li>
+					      <li><a href="/board">전체 글 보기</a></li>
 					      <li>장르별 글 보기</li>
-					      <li><a href="">로맨스</a></li>
-					      <li><a href="">코미디</a></li>
+					      <li><a href="/ro">로맨스</a></li>
+					      <li><a href="/co">코미디</a></li>
 					      <li><a href="">액션</a></li>
-					      <li><a href="">판타지</a></li>
+					      <li><a href="/fa">판타지</a></li>
 					      <li><a href="">공포</a></li>
 					    </ul>
 					 </nav>
@@ -323,6 +325,9 @@
 	        </div>
 	    </div>
 	   
+	   
+	   
+	   
 	  <!-- board list area -->
 	    <div id="board-list">
 	        <div class="container">
@@ -337,15 +342,15 @@
 	                </tr>
 	                </thead>
 	                <tbody>
-	                <c:forEach var="one" items="${list }">
-	                <tr>
-	                    <td>${one.num}</td>
-	                    <td><a href="content?num=${one.num }">${one.title}</a></td>
-	                    <td>${one.writer}</td>
-						<td>${one.regdate}</td>
-						<td>${one.hit}</td>
-	                </tr>
-					</c:forEach>
+	                <c:forEach var="vo" items="${list.content }"> 
+	               <tr>
+	                  <td>${vo.num}</td>
+	                  <td><a href="content?num=${vo.num }&page=${nowPage-1}">${vo.title}</a></td>
+	                  <td>${vo.writer}</td>
+	                  <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value = "${vo.regdate}"/></td>
+	                  <td>${vo.hit}</td>
+	               </tr>
+	               </c:forEach>
 	                </tbody>
 	            </table>
 	        </div>
@@ -354,26 +359,33 @@
 	    
 	    <!-- 페이징 구현 -->
 		<nav aria-label="Page navigation example">
-			  <ul class="pagination">
-			    <li class="page-item"><a class="page-link" href="?page=${startPage}">Previous</a></li>
-			    <li class="page-item"><a class="page-link" href="#">1</a></li>
-			    <li class="page-item"><a class="page-link" href="#">2</a></li>
-			    <li class="page-item"><a class="page-link" href="#">3</a></li>
-			    <li class="page-item"><a class="page-link" href="?page=${endPage}">Next</a></li>
-			  </ul>
+			 <ul class="pagination pagination-sm">
+				<c:if test = "${param.page >= startPage }">
+					<li><a href="board?page=${param.page - 1 }">이전</a></li>
+				</c:if>
+				<!-- 1. 페이지 번호 처리 -->
+				<c:forEach var="pagenum" begin="${startPage }" end="${endPage }">
+					<li class="${nowPage == pagenum ? 'active':'' }">
+						<a href="board?page=${pagenum-1 }">${pagenum }</a>
+					</li>
+				</c:forEach>
+				<c:if test = "${param.page < endPage - 1}">
+					<li><a href="board?page=${param.page + 1}">다음</a></li>
+				</c:if>
+			</ul>
 			</nav>	
 	    
-	     <!-- board search area -->
+	     <!-- 작성글 검색 및 글작성하기 메뉴 -->
+	             
 	    <div id="board-search">
 	        <div class="container">
 	            <div class="search-window">
 	                <form action="">
 	                    <div class="search-wrap">
 	                        <label for="search" class="blind">제목 검색</label>
-	                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-	                        <button type="submit" class="btn btn-dark">검색</button>
+	                        <input type="text" name="keyword" placeholder="제목검색">                      
+	                        <button type="submit" value="검색" class="btn btn-dark">검색</button>
 
-	                        
 	                    </div>
 	                   
 	                </form>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <head>
@@ -72,8 +72,9 @@
 				<span class="writer_info">${one.regdate }</span>
 				<hr>
 				
-				<img src="/resources/files/${one.filename }">
-				
+				<c:if test="${not empty one.filename }">
+					<img src="/resources/files/${one.filename }">
+				</c:if>
 				<span${one.content }></span>
 				
 				<p class="se-text-paragraph se-text-paragraph-align- " 

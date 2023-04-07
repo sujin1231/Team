@@ -47,7 +47,7 @@ public class Board {
 	@Column
 	private String content;
 	
-	@Column
+	@Column(columnDefinition = "int default 0")
 	private int hit;
 	
 	@CreationTimestamp

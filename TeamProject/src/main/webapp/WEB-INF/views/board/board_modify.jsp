@@ -56,11 +56,10 @@
 	 
 	    <main>
 	    <h2><center>글 작성</center></h2>
-	        <form class="register" method="POST" action="/save" enctype="multipart/form-data">
-	        	<c:forEach var="one" items="${list }">
-		            제목 : <input type="text" name="title" id="title">
+	        <form class="regform" method="POST" action="modify" enctype="multipart/form-data">
+		            제목 : <input type="text" name="title" id="title" value="${one.title }" style="width:100%;">
 		            <hr>
-		            작성자 : <input type="text" name="writer" id="writer" value="${one.writer }"> 
+		            작성자 : <input type="text" name="writer" id="writer" value="${one.writer }" style=" width:100%;" readonly> 
 		            <hr>
 		            장르 :
 		            <select id="genre" name="genre">
@@ -83,18 +82,35 @@
 	             	<input type="file" name="file" id="file">
 	             	<hr>
 		            내용 : <br>
-		            <textarea name="content" id="content" placeholder="내용을 입력해주세요." class="text" required></textarea>		          
-		        </c:forEach>
+		            <textarea name="content" id="content" placeholder="내용을 입력해주세요." style="width:100%;" class="text" required>${one.content }</textarea>		          
+
 		            <div class="button">
 		                <p>
-			               <input type="submit" value="등록" >
-			               <input type="button" value="목록" onclick="location.href='board'">
+			            
+			            <!-- 글 등록 메뉴 -->	                
+		                <div class="button">
+		                <p>
+			               <input type="submit" value="수정" onclick="modifyCheck()" >
+			               <input type="button" value="목록" onclick="location.href='board?page=${param.page}'">
+			               <input type="button" value="삭제" onclick="location.href='delete?num=${one.num}'">
 			               <a href="board">목록</a>
 		                </p>
+		            	</div>
+		                
 		            </div>
 	            
 	        </form>
 	    </main>
 	 
+	<script type="text/javascript">
+		function modifyCheck() {
+			if(document.regform.title.value == ""){
+				alert("제목을 입력하세요.");
+				return;
+			}else if(confirm("게시글을  수정하겠습니까?")){
+				document.regform.submit();
+			}
+		}
+	</script>
 </body>
 </html>

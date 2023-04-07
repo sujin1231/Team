@@ -8,6 +8,6 @@ import com.tp.entity.Review;
 
 public interface ReviewRepository extends JpaRepository<Review, Long>{
 
-	Page<Review> findByContentContaining(String keyword, Pageable pageable);
+	Page<Review> findByTitleContaining(String keyword, Pageable pageable);
 	
 }
