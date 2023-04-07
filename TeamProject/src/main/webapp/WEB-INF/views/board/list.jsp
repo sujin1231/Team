@@ -264,9 +264,9 @@
 					      <li>장르별 글 보기</li>
 					      <li><a href="/ro">로맨스</a></li>
 					      <li><a href="/co">코미디</a></li>
-					      <li><a href="">액션</a></li>
+					      <li><a href="/ac">액션</a></li>
 					      <li><a href="/fa">판타지</a></li>
-					      <li><a href="">공포</a></li>
+					      <li><a href="/gong">공포</a></li>
 					    </ul>
 					 </nav>
 	            </table>
@@ -281,7 +281,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav flex-row">
                 	<li>
-                		<a href="board">전체</a>
+                		<a href="ro">전체</a>
                 	</li>
                 	<li>
                 		<a href="review">리뷰</a>

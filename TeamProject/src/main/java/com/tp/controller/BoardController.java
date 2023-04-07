@@ -202,20 +202,20 @@ public class BoardController {
 			}
 			
 			// 현재페이지 가져오는 nowPage
-					int nowPage = list.getPageable().getPageNumber()+1;
-					
-					//Math.max() 는 둘 중 큰걸 반환 min 은 반대
-					int startPage = Math.max(nowPage - 4, 1);
-					int endPage = Math.min(nowPage + 5, list.getTotalPages());
-					int nextp = endPage+1;
-					int prep = startPage-1;
-					
-					model.addAttribute("list", list);
-					model.addAttribute("nowPage", nowPage);
-					model.addAttribute("startPage", startPage);
-					model.addAttribute("endPage", endPage);
-					model.addAttribute("nextPage", nextp);
-					model.addAttribute("prePage", prep);
+			int nowPage = list.getPageable().getPageNumber()+1;
+			
+			//Math.max() 는 둘 중 큰걸 반환 min 은 반대
+			int startPage = Math.max(nowPage - 4, 1);
+			int endPage = Math.min(nowPage + 5, list.getTotalPages());
+			int nextp = endPage+1;
+			int prep = startPage-1;
+			
+			model.addAttribute("list", list);
+			model.addAttribute("nowPage", nowPage);
+			model.addAttribute("startPage", startPage);
+			model.addAttribute("endPage", endPage);
+			model.addAttribute("nextPage", nextp);
+			model.addAttribute("prePage", prep);
 			
 			model.addAttribute("list", list);
 			return "board/list";	

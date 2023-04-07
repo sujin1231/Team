@@ -65,6 +65,8 @@ public class CateController {
 		
 		if(keyword == null) {
 			list = boardservice.genreList("판타지", pageable);
+		}else {
+			list = boardservice.genreAndSearch("판타지", keyword, pageable);
 		}
 
 		

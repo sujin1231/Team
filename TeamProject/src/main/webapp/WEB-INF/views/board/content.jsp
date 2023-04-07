@@ -75,7 +75,8 @@
 				<c:if test="${not empty one.filename }">
 					<img src="/resources/files/${one.filename }">
 				</c:if>
-				<span${one.content }></span>
+				
+				<span>${one.content }</span>
 				
 				<p class="se-text-paragraph se-text-paragraph-align- " 
 					style="" 
@@ -95,25 +96,7 @@
 						<div class="comment_nickname">${one.num }</div>
 						<div class="comment_text_box">
 							<p class="comment_text_view">
-								<span class="text_comment">${one.content }</span>
-							</p>
-						</div>
-						<span class="comment_info_date">현재 시간</span><br><hr>
-					</li>
-					<li id="" class="comment_item">
-						<div class="comment_nickname">${one.num }</div>
-						<div class="comment_text_box">
-							<p class="comment_text_view">
-								<span class="text_comment">${one.content }</span>
-							</p>
-						</div>
-						<span class="comment_info_date">현재 시간</span><br><hr>
-					</li>
-					<li id="" class="comment_item">
-						<div class="comment_nickname">${one.num }</div>
-						<div class="comment_text_box">
-							<p class="comment_text_view">
-								<span class="text_comment">${one.content }</span>
+								<span class="text_comment">  </span>
 							</p>
 						</div>
 						<span class="comment_info_date">현재 시간</span><br><hr>
@@ -141,7 +124,7 @@
 			<table>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="목록" onclick="location.href='list?pageNum=${param.pageNum }'">
+					<input type="button" value="목록" onclick="location.href='board?page=${param.page }'">
 					<input type="button" value="수정" onclick="location.href='modify?num=${one.num}&pageNum=${param.pageNum }'">
 				</td>
 			</tr>

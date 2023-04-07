@@ -40,7 +40,7 @@
 	    color: var(--skinTextColor);
 	    outline: 0;
 		}
-	
+
 
 	</style>
 
