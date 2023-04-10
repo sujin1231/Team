@@ -1,9 +1,13 @@
 package com.tp.entity;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -60,18 +64,23 @@ public class Board {
 	@Column(length=300)
 	private String filepath;
 	
-//	public static Board toSaveEntity(final BoardDTO boardDTO) {
-//		Board boardEntity = new Board();
-//		boardEntity.setNum(boardDTO.getNum());
-//		boardEntity.setWriter(boardDTO.getWriter());
-//		boardEntity.setGenre(boardDTO.getGenre());
-//		boardEntity.setTitle(boardDTO.getTitle());
-//		boardEntity.setContent(boardDTO.getContent());
-//		boardEntity.setHit(0);
-//		
-//		return boardEntity;
-//		
-//	}
+	@OneToMany(mappedBy = "boardEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+	private List<CommentEntity> commentEntityList = new ArrayList<>();
 	
+	
+	public static Board toSaveEntity(final BoardDTO boardDTO) {
+		Board boardEntity = new Board();
+		boardEntity.setNum(boardDTO.getNum());
+		boardEntity.setWriter(boardDTO.getWriter());
+		boardEntity.setGenre(boardDTO.getGenre());
+		boardEntity.setTitle(boardDTO.getTitle());
+		boardEntity.setContent(boardDTO.getContent());
+		boardEntity.setHit(0);
+		
+		return boardEntity;
+		
+	}
+	
+
 
 }

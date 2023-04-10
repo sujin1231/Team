@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <%@ include file="/resources/include/header.jsp" %>
 <!DOCTYPE html>
 
@@ -35,6 +34,7 @@
       
       .nav {
         width: 500px;
+        margin: 10px 350px;
       }
       
       .side-table ul {
@@ -280,7 +280,7 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav flex-row">
                 	<li>
-                		<a href="ro">전체</a>
+                		<a href="board">전체</a>
                 	</li>
                 	<li>
                 		<a href="review">리뷰</a>
@@ -344,7 +344,7 @@
 	                <c:forEach var="vo" items="${list.content }"> 
 	               <tr>
 	                  <td>${vo.num}</td>
-	                  <td><a href="content?num=${vo.num }&page=${nowPage-1}">${vo.title}</a></td>
+	                  <td><a href="recom_content?num=${vo.num }&page=${nowPage-1}">${vo.title}</a></td>
 	                  <td>${vo.writer}</td>
 	                  <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value = "${vo.regdate}"/></td>
 	                  <td>${vo.hit}</td>
@@ -403,7 +403,7 @@
 	
 </body>
 </html>
-<script type="text/javascript">
+<script type = "text/javascript">
 const route = window.location.pathname.replace("/","");
 </script>
 <%@ include file="/resources/include/footer.jsp" %>

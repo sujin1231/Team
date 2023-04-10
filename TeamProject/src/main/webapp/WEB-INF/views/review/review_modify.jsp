@@ -56,40 +56,65 @@
 	 
 	    <main>
 	    <h2><center>글 작성</center></h2>
-	        <form class="register" method="POST" action="modify" enctype="multipart/form-data">
+	        <form class="regform" action="review_modify" method = "post" enctype="multipart/form-data">
 	        	<tr>
-	        		<td><input type="hidden" name="num" value="${one.num }"></td>
-	        	</tr>
-		            제목 : <input type="text" name="title" id="title" value="${one.title }" required>
+					<td><input type="hidden" name="num" value="${one.num }"></td>
+				</tr>
+		            제목 : <input type="text" name="title" id="title" value="${one.title }" style="width:100%;">
 		            <hr>
-		            작성자 : <input type="text" name="writer" id="writer" value="${one.writer }" readonly> 
+		            작성자 : <input type="text" name="writer" id="writer" value="${one.writer }" style=" width:100%;" readonly> 
 		            <hr>
-		            장르 :
+		            장르 : <input type="button" name = "genre" id = "genre" value = "${one.genre }">
 		            <select id="genre" name="genre">
-		            	<option value="${one.genre }" selected>${one.genre }</option>       
+		            	<option value="${one.genre }">=선택=</option>
+		                <option value="로맨스">로맨스</option>
+		                <option value="코미디">코미디</option>
+		                <option value="액션">액션</option>
+		                <option value="핀타지">판타지</option>
+		                <option value="공포">공포</option>
 	             	</select>
 	             	<hr>
 	             	분류 :
 	             	<select id="category" name="category">
-	             		<option value="${one.category }" selected>${one.category }</option> 
+	             		<option value="">=선택=</option>
+		                <option value="리뷰">리뷰</option>
+		                <option value="추천">추천</option>
+		                <option value="정보">정보</option>
 	             	</select>
 	             	<hr>
 	             	<input type="file" name="file" id="file">
 	             	<hr>
 		            내용 : <br>
-		            <textarea name="content" id="content" placeholder="내용을 입력해주세요." class="text" required>${one.content }</textarea>		          
-		        
+		            <textarea name="content" id="content" placeholder="내용을 입력해주세요." style="width:100%;" class="text" required>${one.content }</textarea>		          
+
 		            <div class="button">
 		                <p>
-			               <input type="submit" value="수정" onclick="modifyCheck()">
+			            
+			            <!-- 글 등록 메뉴 -->	                
+		                <div class="button">
+		                <p>
+			               <input type="submit" value="수정" onclick="modifyCheck()" >
 			               <input type="button" value="목록" onclick="location.href='board?page=${param.page}'">
-						   <input type="button" value="삭제" onclick="location.href='delete?num=${one.num}'">
+			               <input type="button" value="삭제" onclick="location.href='delete?num=${one.num}'">
 			               <a href="board">목록</a>
 		                </p>
+		            </div>
+		                
+		                
 		            </div>
 	            
 	        </form>
 	    </main>
-
+	 
+	<script type="text/javascript">
+		function modifyCheck() {
+			if(document.regform.title.value == ""){
+				alert("제목을 입력하세요.");
+				return;
+			}else if(confirm("게시글을  수정하겠습니까?")){
+				document.regform.submit();
+			}
+		}
+	</script>
 </body>
 </html>

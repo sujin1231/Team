@@ -56,7 +56,7 @@
 	 
 	    <main>
 	    <h2><center>글 작성</center></h2>
-	        <form class="register" method="POST" action="modify" enctype="multipart/form-data">
+	        <form class="register" method="POST" action="co_modify" enctype="multipart/form-data">
 	        	<tr>
 	        		<td><input type="hidden" name="num" value="${one.num }"></td>
 	        	</tr>
@@ -82,7 +82,7 @@
 		            <div class="button">
 		                <p>
 			               <input type="submit" value="수정" onclick="modifyCheck()">
-			               <input type="button" value="목록" onclick="location.href='board?page=${param.page}'">
+			               <input type="button" value="뒤로가기" onclick="history.back(-1)">
 						   <input type="button" value="삭제" onclick="location.href='delete?num=${one.num}'">
 			               <a href="board">목록</a>
 		                </p>
@@ -91,5 +91,6 @@
 	        </form>
 	    </main>
 
+	  
 </body>
-</html>
+</html>	

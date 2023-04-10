@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 
 <head>
 	<style>
@@ -18,15 +17,15 @@
 		}
 	
 	
-		.comment-write {
+		.CommentWriter {
 	    margin: 12px 0 29px;
 	    padding: 16px 10px 10px 18px;
-	    border: 2px solid var(--skincomment-writeBorder);
+	    border: 2px solid var(--skinCommentWriterBorder);
 	    border-radius: 6px;
 	    box-sizing: border-box;
-	    background: var(--skincomment-writeBg);
+	    background: var(--skinCommentWriterBg);
 		}
-		.comment-write textarea {
+		.CommentWriter textarea {
 	    height: auto; /* 내용의 길이에 따라 자동으로 높이 조정 */
 	    resize: none; /* 사용자가 크기를 조정할 수 없도록 함 */
 	    overflow: auto; /* 내용이 넘칠 경우 스크롤바 생성 */
@@ -85,27 +84,25 @@
 					<span>${one.writer }</span>
 				</p>
 				<hr>
+				
+				<!--  -->
+					장르 :
+		            <select id="genre" name="genre" required>
+		            	<option value="${one.genre }" selected>${one.genre }</option>       
+	             	</select>
+	             	<hr>
+	             	분류 :
+	             	<select id="category" name="category" required>
+	             		<option value="${one.category }" selected>${one.category }</option> 
+	             	</select>
 					
+				<!--  -->
+				
+				
 			<!-- 전체 댓글 란 (댓글 목록 + 댓글 작성 칸) -->
 			<div class="CommentBox">
 		
-			<!-- 댓글 작성 부분 -->
-			<div class="my-box">
-				<div id="comment-write">
-				    <b>${one.writer }</b><br><br>
-				    <textarea placeholder="댓글을 남겨보세요" class="comment_inbox_text" 
-				    	style="overflow: hidden; overflow-wrap: break-word; "></textarea><br>
-				    <div class="right-box">
-				    	<button id="comment_write_button" onclick="commentWrite()">등록</button>
-				    </div>
-				</div>
-			</div>
-			</div>
-			
-			
 			<!-- 댓글 목록 -->
-			<div id="comment-list">
-					
 			<h3 class="comment_title">댓글</h3>
 			<hr>
 				<ol class="comment_list">
@@ -119,59 +116,30 @@
 						<span class="comment_info_date">현재 시간</span><br><hr>
 					</li>
 				</ol>
+			
+			
 				
+				
+			
+			<!-- 댓글 작성 부분 -->
+			<div class="my-box">
+				<div id="CommentWriter">
+				    <b>${one.writer }</b><br><br>
+				    <textarea placeholder="댓글을 남겨보세요" class="comment_inbox_text" 
+				    	style="overflow: hidden; overflow-wrap: break-word; "></textarea><br>
+				    <div class="right-box">
+				    	<button id="comment_write_button" onclick="commentWrite()">등록</button>
+				    </div>
+				</div>
+			</div>
 			</div>
 				
-			
-			<script th:inline="javascript">
-				const writer = document.getElementById("commentWriter").value;
-				const contents = document.getElementById("commentContents").value;
-				console.log("작성자: ",writer);
-				console.log("내용: ",contents);	
-				const id = [[${board.id}]]; //게시글 번호
-				$.ajax({
-					// 요청방식: post, 요청주소: /comment/save, 요청데이터: 작성자, 작성내용, 게시글번호
-					type: "post",
-					url: "/comment/save",
-					data: {
-						"commentWriter": writer,
-						"commentContents": contents,
-						"boardId": id
-					},
-					success: function (res) {
-			               console.log("요청성공", res);
-			               let output = "<table>";
-			               output += "<tr><th>댓글번호</th>";
-			               output += "<th>작성자</th>";
-			               output += "<th>내용</th>";
-			               output += "<th>작성시간</th></tr>";
-			               for (let i in res) {
-			                   output += "<tr>";
-			                   output += "<td>" + res[i].id + "</td>";
-			                   output += "<td>" + res[i].commentWriter + "</td>";
-			                   output += "<td>" + res[i].commentContents + "</td>";
-			                   output += "<td>" + res[i].commentCreatedTime + "</td>";
-			                   output += "</tr>";
-			               }
-			               output += "</table>";
-			               document.getElementById('comment-list').innerHTML = output;
-			               document.getElementById('commentWriter').value = '';
-			               document.getElementById('commentContents').value = '';
-			           },
-					error: function(err) {
-						console.log("요청 실패", err);
-					}
-				});
-			</script>
-			
-			
-			
 			<!-- 글 등록 메뉴  -->
 			<table>
 			<tr>
 				<td colspan="2" align="center">
-					<input type="button" value="목록" onclick="location.href='board?page=${param.page }'">
-					<input type="button" value="수정" onclick="location.href='modify?num=${one.num}&pageNum=${param.pageNum }'">
+					<input type="button" value="목록" onclick="goBack()">
+					<input type="button" value="수정" onclick="location.href='co_modify?num=${one.num}&pageNum=${param.pageNum }'">
 				</td>
 			</tr>
 			</table>
@@ -182,3 +150,9 @@
 	
 </body>
 
+<script>
+function goBack() {
+	const previousPage = document.referrer;
+    window.location.href = previousPage;
+}
+</script>

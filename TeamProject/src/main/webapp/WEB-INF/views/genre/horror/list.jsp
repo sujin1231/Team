@@ -3,6 +3,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script type = "text/javascript">
+const route = window.location.pathname.replace('/','');
+</script>
 
 <%@ include file="/resources/include/header.jsp" %>
 <!DOCTYPE html>
@@ -35,6 +38,7 @@
       
       .nav {
         width: 500px;
+        margin: 10px 350px;
       }
       
       .side-table ul {
@@ -280,16 +284,16 @@
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav flex-row">
                 	<li>
-                		<a href="ro">전체</a>
+                		<a href="horror_board">전체</a>
                 	</li>
                 	<li>
-                		<a href="review">리뷰</a>
+                		<a href="horror_review">리뷰</a>
                 	</li>
                 	<li>
-                		<a href="recom">추천</a>
+                		<a href="horror_recom">추천</a>
                 	</li>
                 	<li>
-                		<a href="info">정보</a>
+                		<a href="horror_info">정보</a>
                 	</li>
                 </ul>
 				   
@@ -403,9 +407,7 @@
 	
 </body>
 </html>
-<script type="text/javascript">
-const route = window.location.pathname.replace("/","");
-</script>
+
 <%@ include file="/resources/include/footer.jsp" %>
 </body>
 </html>

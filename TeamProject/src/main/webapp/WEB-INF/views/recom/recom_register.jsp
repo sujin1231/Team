@@ -40,7 +40,7 @@
 	    color: var(--skinTextColor);
 	    outline: 0;
 		}
-	
+
 
 	</style>
 
@@ -56,40 +56,45 @@
 	 
 	    <main>
 	    <h2><center>글 작성</center></h2>
-	        <form class="register" method="POST" action="modify" enctype="multipart/form-data">
-	        	<tr>
-	        		<td><input type="hidden" name="num" value="${one.num }"></td>
-	        	</tr>
-		            제목 : <input type="text" name="title" id="title" value="${one.title }" required>
+	        <form class="register" method="POST" action="/save" enctype="multipart/form-data">
+	        	<c:forEach var="one" items="${list }">
+		            제목 : <input type="text" name="title" id="title">
 		            <hr>
-		            작성자 : <input type="text" name="writer" id="writer" value="${one.writer }" readonly> 
+		            작성자 : <input type="text" name="writer" id="writer" value="${one.writer }"> 
 		            <hr>
 		            장르 :
 		            <select id="genre" name="genre">
-		            	<option value="${one.genre }" selected>${one.genre }</option>       
+		            	<option value="">=선택=</option>
+		                <option value="로맨스">로맨스</option>
+		                <option value="코미디">코미디</option>
+		                <option value="액션">액션</option>
+		                <option value="핀타지">판타지</option>
+		                <option value="공포">공포</option>
 	             	</select>
 	             	<hr>
 	             	분류 :
 	             	<select id="category" name="category">
-	             		<option value="${one.category }" selected>${one.category }</option> 
+	             		<option value="">=선택=</option>
+		                <option value="리뷰">리뷰</option>
+		                <option value="추천">추천</option>
+		                <option value="정보">정보</option>
 	             	</select>
 	             	<hr>
 	             	<input type="file" name="file" id="file">
 	             	<hr>
 		            내용 : <br>
-		            <textarea name="content" id="content" placeholder="내용을 입력해주세요." class="text" required>${one.content }</textarea>		          
-		        
+		            <textarea name="content" id="content" placeholder="내용을 입력해주세요." class="text" required></textarea>		          
+		        </c:forEach>
 		            <div class="button">
 		                <p>
-			               <input type="submit" value="수정" onclick="modifyCheck()">
-			               <input type="button" value="목록" onclick="location.href='board?page=${param.page}'">
-						   <input type="button" value="삭제" onclick="location.href='delete?num=${one.num}'">
+			               <input type="submit" value="등록" >
+			               <input type="button" value="목록" onclick="location.href='board'">
 			               <a href="board">목록</a>
 		                </p>
 		            </div>
 	            
 	        </form>
 	    </main>
-
+	 
 </body>
 </html>

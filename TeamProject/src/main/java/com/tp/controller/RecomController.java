@@ -22,13 +22,13 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class ReviewController {
+public class RecomController {
 	
 	private final BoardService boardService;
 	
 	
 	// 리뷰 페이지로 이동
-	@RequestMapping("/review")
+	@RequestMapping("/recom")
 	public String findByBun(String bun, 
 			Model model,
 			@PageableDefault(page = 0,size = 10, sort = "num", direction = Sort.Direction.DESC) Pageable pageable,
@@ -37,9 +37,9 @@ public class ReviewController {
 		Page<Board> list = null;
 		
 		if(keyword == null) {
-			list = boardService.CategoryList("리뷰", pageable);
+			list = boardService.CategoryList("추천", pageable);
 		}else {
-			list = boardService.CategoryAndSearch("리뷰", keyword, pageable);
+			list = boardService.CategoryAndSearch("추천", keyword, pageable);
 		}
 		
 		// 현재페이지 가져오는 nowPage
@@ -55,38 +55,38 @@ public class ReviewController {
 		model.addAttribute("endPage", endPage);
 		
 		model.addAttribute("list", list);
-		return "review/review";
+		return "recom/recom";
 	}
 
-	@GetMapping("/review_save")
+	@GetMapping("/recom_save")
 	public String reviewsave() {
-		return "review/review_save";
+		return "recom/recom";
 	}
 
-	@PostMapping("/review_save")
+	@PostMapping("/recom_save")
 	public String reviewSave(Board board, MultipartFile file) throws Exception {
 		boardService.save(board, file);
-		return "redirect:/review";
+		return "redirect:/recom";
 
 	}
 
 	// 리뷰 게시물 상세보기
-	@RequestMapping("/review_content")
+	@RequestMapping("/recom_content")
 	public String review_content(@RequestParam("num") Long num, Model model) {
 		
 		model.addAttribute("one", boardService.selectOne(num));
-		return "review/review_content";
+		return "recom/recom_content";
 	}
 	
 	// 리뷰 게시물 수정
-	@GetMapping("review_modify")
+	@GetMapping("recom_modify")
 	public String modify(@RequestParam("num") Long num, Model model) {
 	    model.addAttribute("one", boardService.selectOne(num));
-	    return "review/review_modify";
+	    return "recom/recom_modify";
 	}
 
 	// 리뷰 게시물 수정 후 확인
-	@PostMapping("review_modify")
+	@PostMapping("recom_modify")
 	public String modifyAfter(Board board, MultipartFile file) throws Exception {
 		
 		Timestamp now = new Timestamp(System.currentTimeMillis());
@@ -95,15 +95,7 @@ public class ReviewController {
 		System.out.println(now);
 		
 		boardService.save(board, file);
-		return "redirect:/review_content?num=" + board.getNum();
+		return "redirect:/recom_content?num=" + board.getNum();
 	}
-	
-//	@RequestMapping("review/ro")
-//	public String reviewRo() {
-//		
-//		
-//		
-//		return "review/review";
-//	}
 
 }
