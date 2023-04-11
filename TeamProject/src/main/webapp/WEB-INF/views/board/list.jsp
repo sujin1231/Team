@@ -14,7 +14,6 @@
 
 <style>
       div.row {
-        width: 100%;
         display: flex;
         border: 1px solid #003458;
       }
