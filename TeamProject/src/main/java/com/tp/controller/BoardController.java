@@ -29,6 +29,11 @@ public class BoardController {
 
 	private final BoardService boardservice;
 	
+	@RequestMapping("/main")
+	public String mainboard() {
+		return "main/main";
+	}
+	
 	// 페이징, 게시물 검색, 게시물 목록 보기
 	@RequestMapping("/board")
 	public String main(Model model, 
