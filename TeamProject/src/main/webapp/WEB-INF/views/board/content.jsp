@@ -128,7 +128,7 @@
 				const contents = document.getElementById("commentContents").value;
 				console.log("작성자: ",writer);
 				console.log("내용: ",contents);	
-				const id = [[${board.id}]]; //게시글 번호
+				const id = ${one.num}; //게시글 번호
 				$.ajax({
 					// 요청방식: post, 요청주소: /comment/save, 요청데이터: 작성자, 작성내용, 게시글번호
 					type: "post",
