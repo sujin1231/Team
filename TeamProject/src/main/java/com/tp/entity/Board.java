@@ -64,7 +64,7 @@ public class Board {
 	@Column(length=300)
 	private String filepath;
 	
-	@OneToMany(mappedBy = "boardEntity", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "board", cascade = CascadeType.REMOVE, orphanRemoval = true, fetch = FetchType.LAZY)
 	private List<CommentEntity> commentEntityList = new ArrayList<>();
 	
 	

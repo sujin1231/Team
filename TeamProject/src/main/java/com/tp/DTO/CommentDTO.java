@@ -17,7 +17,7 @@ public class CommentDTO {
 	private String commentWriter;
 	private String commentContents;
 	private Long boardId;
-	private LocalDateTime commentCreatedTime;
+//	private LocalDateTime commentCreatedTime;
 	
 	public static CommentDTO toCommentDTO(CommentEntity commentEntity, Long boardId) {
 		CommentDTO commentDTO = new CommentDTO();

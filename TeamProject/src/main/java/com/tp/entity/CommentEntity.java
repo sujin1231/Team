@@ -33,14 +33,14 @@ public class CommentEntity extends BoardBaseEntity{
 	
 	/* Board:Comment = 1:N */
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "board_id")
-	private Board boardEntity;
+	@JoinColumn(name = "num")
+	private Board board;
 	
 	private CommentEntity toSaveEntity(CommentDTO commentDTO, Board board) {
 		CommentEntity commentEntity = new CommentEntity();
 		commentEntity.setCommentWriter(commentDTO.getCommentWriter());
 		commentEntity.setCommentContents(commentDTO.getCommentContents());
-		commentEntity.setBoardEntity(boardEntity);
+		commentEntity.setBoard(board);
 		return commentEntity;
 	}
 	
